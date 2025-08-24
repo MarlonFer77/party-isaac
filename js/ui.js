@@ -273,27 +273,48 @@ setupRsvpForm() {
     },
     
     // --- GERADOR DE ARQUIVO .ICS ---
-    generateIcsFile() {
-        const { evento, aniversariante } = window.AppConfig;
-        const startDate = new Date(evento.dataISO);
-        const endDate = new Date(startDate.getTime() + (4 * 60 * 60 * 1000));
-        const toIcsDate = (date) => date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-        const icsContent = [
-            'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//FestaDoIsaac//NONSGML v1.0//EN',
-            'BEGIN:VEVENT', `UID:${Date.now()}@festadoisaac.com`, `DTSTAMP:${toIcsDate(new Date())}`,
-            `DTSTART:${toIcsDate(startDate)}`, `DTEND:${toIcsDate(endDate)}`,
-            `SUMMARY:Festa de 1 Aninho do ${aniversariante.nome}`, `DESCRIPTION:Vamos celebrar o primeiro aninho do ${aniversariante.nome}! ${evento.observacoes}`,
-            `LOCATION:${evento.local.nome}, ${evento.local.endereco}`, 'END:VEVENT', 'END:CALENDAR'
-        ].join('\r\n');
-        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', `festa-${aniversariante.nome.toLowerCase()}.ics`);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    },
+generateIcsFile() {
+    const { evento, aniversariante } = window.AppConfig;
+
+    // Função helper para escapar caracteres especiais
+    const escapeIcsString = (str) => {
+        if (!str) return '';
+        return str.replace(/,/g, '\\,').replace(/;/g, '\\;').replace(/\n/g, '\\n');
+    };
+
+    const startDate = new Date(evento.dataISO);
+    // Duração de 4 horas para o evento
+    const endDate = new Date(startDate.getTime() + (4 * 60 * 60 * 1000));
+
+    // Formata a data para o padrão UTC universal (YYYYMMDDTHHMMSSZ)
+    const toIcsDate = (date) => date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+
+    // Monta o conteúdo do arquivo .ics com os textos devidamente "escapados"
+    const icsContent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//FestaDoIsaac//NONSGML v1.0//EN',
+        'BEGIN:VEVENT',
+        `UID:${Date.now()}@festadoisaac.com`,
+        `DTSTAMP:${toIcsDate(new Date())}`,
+        `DTSTART:${toIcsDate(startDate)}`,
+        `DTEND:${toIcsDate(endDate)}`,
+        `SUMMARY:${escapeIcsString(`Festa de 1 Aninho do ${aniversariante.nome}`)}`,
+        `DESCRIPTION:${escapeIcsString(`Vamos celebrar o primeiro aninho do ${aniversariante.nome}! ${evento.observacoes}`)}`,
+        `LOCATION:${escapeIcsString(`${evento.local.nome}, ${evento.local.endereco}`)}`,
+        'END:VEVENT',
+        'END:VCALENDAR'
+    ].join('\r\n');
+
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `festa-${aniversariante.nome.toLowerCase()}.ics`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+},
 
     // --- MICROINTERAÇÕES ---
     setupMicrointeractions() {

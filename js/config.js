@@ -44,7 +44,7 @@ const AppConfig = {
   // === CONFIGURAÇÕES DO ADMINISTRADOR ===
   admin: {
     user: "isaac",
-    pass: "310824", // Senha simples para controle de acesso local
+    pass: "300824", // Senha simples para controle de acesso local
   },
 
   // === CONFIGURAÇÕES DO RSVP ===
