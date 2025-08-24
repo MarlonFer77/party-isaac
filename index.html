@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite | 1º Aninho do Isaac</title>
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="js/ui.js" as="script">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Poppins:wght@600;700&display=swap"
+        as="style" onload="this.rel='stylesheet'">
+    <link rel="icon" href="public/assets/img/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="caustics-overlay"></div>
+    <div class="bubbles-container"></div>
+    <div class="fish-container"></div>
+    <div class="wave-back"></div>
+    <div class="wave-front"></div>
+
+    <main class="main-container">
+        <section id="hero" class="hero-section section-full">
+            <h2 class="hero-subtitle">Mergulhe no 1º aninho do</h2>
+            <h1 class="hero-title"></h1>
+            <p class="hero-date"></p>
+            <a href="#rsvp" class="btn btn-primary cta-scroll">Confirmar Presença</a>
+        </section>
+
+        <section id="countdown-section" class="countdown-section section-padded">
+            <h3 class="section-title">Contagem Regressiva para a Aventura</h3>
+            <div id="countdown" class="countdown-timer">
+                <div class="timer-unit">
+                    <span id="days">00</span>
+                    <label>Dias</label>
+                </div>
+                <div class="timer-unit">
+                    <span id="hours">00</span>
+                    <label>Horas</label>
+                </div>
+                <div class="timer-unit">
+                    <span id="minutes">00</span>
+                    <label>Minutos</label>
+                </div>
+                <div class="timer-unit">
+                    <span id="seconds">00</span>
+                    <label>Segundos</label>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery-section section-padded">
+            <h3 class="section-title">Nossos Tesouros</h3>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                </div>
+                <button class="carousel-button prev" aria-label="Anterior">&#10094;</button>
+                <button class="carousel-button next" aria-label="Próximo">&#10095;</button>
+                <div class="carousel-pagination">
+                </div>
+            </div>
+        </section>
+
+<section id="rsvp" class="rsvp-section section-padded" hidden>
+    <div class="info-column">
+        <h3 class="section-title">Detalhes da Festa</h3>
+
+        <div class="info-card">
+            <h4>Localização</h4>
+            <p id="local-nome"></p>
+            <p id="local-endereco"></p>
+            <a id="local-link" href="#" target="_blank" class="map-link">Ver no Google Maps</a>
+        </div>
+
+        <div class="info-card">
+            <h4>Dress Code</h4>
+            <p id="dress-code"></p>
+        </div>
+
+        <div class="info-card">
+            <h4>Observações</h4>
+            <p id="observacoes"></p>
+        </div>
+        
+        <div class="info-card">
+            <h4>Dúvidas?</h4>
+            <p>Se precisar de mais alguma informação, fale conosco!</p>
+            <a id="contact-link" href="#" target="_blank" class="btn btn-secondary">
+                Fale conosco via WhatsApp
+            </a>
+        </div>
+
+        <div class="info-card easter-egg-container">
+            <span id="easter-egg" title="Um segredinho do mar...">🐠</span>
+        </div>
+    </div>
+
+    <div class="form-column">
+        <h3 class="section-title">Confirme sua Presença</h3>
+        <form id="rsvp-form" novalidate>
+            <div class="form-group">
+                <label for="name">Seu nome completo:</label>
+                <input type="text" id="name" name="name" required placeholder="Escreva seu nome aqui" maxlength="100">
+                <p class="error-message" aria-live="polite"></p>
+            </div>
+            <div class="form-group">
+                <label for="accompanists">Nº de acompanhantes (além de você):</label>
+                <select id="accompanists" name="accompanists"></select>
+            </div>
+            <div class="form-group">
+                <label for="message">Deixe uma mensagem para o Isaac (opcional):</label>
+                <textarea id="message" name="message" rows="4" placeholder="Sua mensagem..." maxlength="500"></textarea>
+            </div>
+            <div class="form-group form-submit-group">
+                <button type="submit" class="btn btn-primary btn-submit">Mergulhar Nessa Festa!</button>
+            </div>
+        </form>
+    </div>
+</section>
+    </main>
+
+    <div id="thank-you-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+        hidden>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar">&times;</button>
+            <h3 id="modal-title">Obrigado por mergulhar nessa aventura!</h3>
+            <p id="modal-body">Sua presença foi confirmada. Mal podemos esperar para celebrar com você!</p>
+            <button id="add-to-calendar" class="btn btn-secondary">Adicionar ao Calendário</button>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <p class="signature">M.F.</p>
+        <p>&copy; 2025 Festa do Isaac. Criado com 💙. <a href="admin.html" class="admin-link"
+                title="Acesso do Administrador">Admin</a></p>
+    </footer>
+    <audio id="bubble-sound" src="public/assets/audio/bubble-sound.mp3" preload="auto"></audio>
+    <script src="js/config.js"></script>
+    <script src="js/main.min.js"></script>
+</body>
+
+</html>
