@@ -1,24 +1,13 @@
-/**
- * Helper para sanitizar strings, prevenindo injeção de HTML.
- * @param {string} str - A string a ser sanitizada.
- * @returns {string} - A string sanitizada.
- */
 function sanitize(str) {
   if (!str) return '';
   return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-/**
- * Salva uma nova confirmação enviando os dados para a API do SheetDB.
- * @param {object} rsvpData - Os dados da confirmação.
- * @returns {Promise<object>} - Retorna uma promessa que resolve para { success: true } ou { success: false, message: '...' }.
- */
 async function saveRsvp(rsvpData) {
   const payload = {
     id: `id-${Date.now()}`,
     timestamp: new Date().toISOString(),
     nome: sanitize(rsvpData.nome),
-    acompanhantes: parseInt(rsvpData.acompanhantes) || 0,
     mensagem: sanitize(rsvpData.mensagem),
   };
 
@@ -45,10 +34,6 @@ async function saveRsvp(rsvpData) {
   }
 }
 
-/**
- * Lista todas as confirmações buscando os dados da API.
- * @returns {Promise<Array>} - Uma promessa que resolve para um array de confirmações.
- */
 async function listRsvps() {
   try {
     const response = await fetch(window.AppConfig.api.url);
@@ -63,10 +48,6 @@ async function listRsvps() {
   }
 }
 
-/**
- * Remove uma confirmação específica via API.
- * @param {string} id - O ID do RSVP a ser removido.
- */
 async function deleteRsvp(id) {
     const url = `${window.AppConfig.api.url}/id/${id}`;
     try {
@@ -78,20 +59,11 @@ async function deleteRsvp(id) {
     }
 }
 
-/**
- * Calcula os totais de confirmações e convidados a partir dos dados da API.
- * @returns {Promise<object>}
- */
 async function countTotals() {
     const rsvps = await listRsvps();
-    const confirmed = rsvps.length;
-    const guests = rsvps.reduce((acc, rsvp) => acc + parseInt(rsvp.acompanhantes || 0), 0);
-    return { confirmed, guests, total: confirmed + guests };
+    return { confirmed: rsvps.length };
 }
 
-/**
- * Prepara e aciona o download dos dados em formato CSV.
- */
 async function exportCSV() {
     const rsvps = await listRsvps();
     if (rsvps.length === 0) {
@@ -99,42 +71,31 @@ async function exportCSV() {
         return;
     }
 
-    const headers = "ID,Nome,Acompanhantes,Mensagem,Data da Confirmação\n";
+    const headers = "ID,Nome,Mensagem,Data da Confirmação\n";
     const rows = rsvps.map(r => 
         [
             r.id,
             `"${(r.nome || '').replace(/"/g, '""')}"`,
-            r.acompanhantes,
             `"${(r.mensagem || '').replace(/"/g, '""')}"`,
             new Date(r.timestamp).toLocaleString('pt-BR')
         ].join(',')
     ).join('\n');
 
     const csvContent = headers + rows;
-    triggerDownload(csvContent, 'text/csv', 'confirmacoes_festa.csv');
+    triggerDownload(csvContent, 'confirmacoes_festa.csv', 'text/csv');
 }
 
-/**
- * Prepara e aciona o download dos dados em formato JSON.
- */
 async function exportJSON() {
     const rsvps = await listRsvps();
     if (rsvps.length === 0) {
         alert("Nenhuma confirmação para exportar.");
         return;
     }
-
     const jsonContent = JSON.stringify(rsvps, null, 2);
-    triggerDownload(jsonContent, 'application/json', 'confirmacoes_festa.json');
+    triggerDownload(jsonContent, 'confirmacoes_festa.json', 'application/json');
 }
 
-/**
- * Helper genérico para acionar o download de um arquivo.
- * @param {string} content - O conteúdo do arquivo.
- * @param {string} mimeType - O tipo MIME do arquivo.
- * @param {string} fileName - O nome do arquivo para download.
- */
-function triggerDownload(content, mimeType, fileName) {
+function triggerDownload(content, fileName, mimeType) {
     const blob = new Blob([content], { type: mimeType });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');

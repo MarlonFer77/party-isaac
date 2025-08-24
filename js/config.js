@@ -12,7 +12,6 @@ const AppConfig = {
       endereco: "Av. Monsenhor Solano Dantas de Menezes, 465, Heliópolis - Belford Roxo, RJ",
       googleMapsLink: "https://maps.app.goo.gl/ibE6iAtiJvyk83JT6",
     },
-    dressCode: "Venha com as cores do oceano! (Azul, verde, coral)",
     observacoes: "Presentes são opcionais, sua presença é o maior tesouro! Teremos um espaço seguro e divertido para os pequenos marinheiros.",
   },
   contato: {
@@ -49,11 +48,7 @@ const AppConfig = {
 
   // === CONFIGURAÇÕES DO RSVP ===
   rsvp: {
-    // Chave secreta na URL para exibir o formulário. 
-    // Ex: index.html?k=convidadoespecial123
-    // Deixe em branco ('') para desativar e deixar o RSVP aberto a todos.
     chaveSecreta: "isaacfaz1", 
-    maxAcompanhantes: 5, // Número máximo selecionável no formulário
   },
   api: {
   url: 'https://sheetdb.io/api/v1/p1x0ag8rxqetn'
