@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Convite | 1º Aninho do Isaac</title>
+    <meta property="og:title" content="Convite | 1º Aninho do Isaac" />
+    <meta property="og:description"
+        content="Prepare-se para uma aventura submarina! Você está convidado para mergulhar na comemoração do 1º aninho do nosso pequeno explorador." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://isaac-party.netlify.app/" />
+    <meta property="og:image" content="https://isaac-party.netlify.app/public/assets/img/social-preview.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <link rel="preload" href="css/styles.css" as="style">
     <link rel="preload" href="js/ui.js" as="script">
     <link rel="preload"
@@ -14,7 +22,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;500&family=Poppins:wght@600;700&display=swap"
+        rel="stylesheet">
 
 </head>
 
@@ -67,53 +77,56 @@
             </div>
         </section>
 
-<section id="rsvp" class="rsvp-section section-padded" hidden>
-    <div class="info-column">
-        <h3 class="section-title">Detalhes da Festa</h3>
+        <section id="rsvp" class="rsvp-section section-padded" hidden>
+            <div class="info-column">
+                <h3 class="section-title">Detalhes da Festa</h3>
 
-        <div class="info-card">
-            <h4>Localização</h4>
-            <p id="local-nome"></p>
-            <p id="local-endereco"></p>
-            <a id="local-link" href="#" target="_blank" class="map-link">Ver no Google Maps</a>
-        </div>
+                <div class="info-card">
+                    <h4>Localização</h4>
+                    <p id="local-nome"></p>
+                    <p id="local-endereco"></p>
+                    <a id="local-link" href="#" target="_blank" class="map-link">Ver no Google Maps</a>
+                </div>
 
-        <div class="info-card">
-            <h4>Observações</h4>
-            <p id="observacoes"></p>
-        </div>
-        
-        <div class="info-card">
-            <h4>Dúvidas?</h4>
-            <p>Se precisar de mais alguma informação, fale conosco!</p>
-            <a id="contact-link" href="#" target="_blank" class="btn btn-secondary">
-                Fale conosco via WhatsApp
-            </a>
-        </div>
+                <div class="info-card">
+                    <h4>Observações</h4>
+                    <p id="observacoes"></p>
+                </div>
 
-        <div class="info-card easter-egg-container">
-            <span id="easter-egg" title="Um segredinho do mar...">🐠</span>
-        </div>
-    </div>
+                <div class="info-card">
+                    <h4>Dúvidas?</h4>
+                    <p>Se precisar de mais alguma informação, fale conosco!</p>
+                    <a id="contact-link" href="#" target="_blank" class="btn btn-secondary">
+                        Fale conosco via WhatsApp
+                    </a>
+                </div>
 
-    <div class="form-column">
-        <h3 class="section-title">Confirme sua Presença</h3>
-        <form id="rsvp-form" novalidate>
-            <div class="form-group">
-                <label for="name">Seu nome completo:</label>
-                <input type="text" id="name" name="name" required placeholder="Escreva seu nome aqui" maxlength="100">
-                <p class="error-message" aria-live="polite"></p>
+                <div class="info-card easter-egg-container">
+                    <span id="easter-egg" title="Um segredinho do mar...">🐠</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="message">Deixe uma mensagem para o Isaac (opcional):</label>
-                <textarea id="message" name="message" rows="4" placeholder="Sua mensagem..." maxlength="500"></textarea>
+
+            <div class="form-column">
+                <h3 class="section-title">Confirme sua Presença</h3>
+                <form id="rsvp-form" novalidate>
+                    <div class="form-group">
+                        <label for="name">Seu nome completo:</label>
+                        <input type="text" id="name" name="name" required placeholder="Escreva seu nome aqui"
+                            maxlength="100">
+                        <p class="error-message" aria-live="polite"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Deixe uma mensagem para o Isaac (opcional):</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Sua mensagem..."
+                            maxlength="500"></textarea>
+                    </div>
+                    <div class="form-group form-submit-group">
+                        <button type="submit" class="btn btn-primary btn-submit" id="mergulhar-btn">Mergulhar Nessa
+                            Festa!</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group form-submit-group">
-                <button type="submit" class="btn btn-primary btn-submit" id="mergulhar-btn">Mergulhar Nessa Festa!</button>
-            </div>
-        </form>
-    </div>
-</section>
+        </section>
     </main>
 
     <div id="thank-you-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title"
@@ -127,7 +140,8 @@
     </div>
     <footer class="site-footer">
         <p class="signature">M.F.</p>
-        <p>&copy; 2025 Festa do Isaac. Criado com 💙. <a href="admin.html" class="admin-link" title="Acesso do Administrador">⚙️</a></p>
+        <p>&copy; 2025 Festa do Isaac. Criado com 💙. <a href="admin.html" class="admin-link"
+                title="Acesso do Administrador">⚙️</a></p>
     </footer>
     <audio id="bubble-sound" src="public/assets/audio/bubble-sound.mp3" preload="auto"></audio>
     <script src="js/config.js"></script>
