@@ -34,9 +34,7 @@ const AppConfig = {
       "foto_familia_02.jpg",
     ],
     videos: [
-      "video_abertura.mp4",
-      "video_familia.mp4",
-      "video_tema.mp4",
+
     ],
   },
   

@@ -159,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.elements.bubbleSound.currentTime = 0;
                     this.elements.bubbleSound.play();
                 }
+                this.createButtonBubbleBurst();
             });
         },
         validateForm() {
@@ -263,6 +264,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         },
+createButtonBubbleBurst() {
+    const container = document.querySelector('.bubbles-container');
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    for (let i = 0; i < 30; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        
+        const size = Math.random() * 25 + 10;
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+
+        bubble.style.left = `${Math.random() * screenWidth}px`;
+        bubble.style.top = `${screenHeight + Math.random() * 100}px`;
+
+        // --- AJUSTE DE VELOCIDADE AQUI ---
+        // Duração e atraso ajustados para serem mais rápidos
+        bubble.style.animationDuration = `${Math.random() * 2 + 1}s`; // ANTES: 4 a 9s, AGORA: 2 a 5s
+        bubble.style.animationDelay = `${Math.random() * 1}s`;   // ANTES: 0 a 2s, AGORA: 0 a 1s
+        
+        bubble.addEventListener('animationend', () => bubble.remove());
+        
+        container.appendChild(bubble);
+    }
+},
         setupContactButton() {
             const { contato } = window.AppConfig;
             if (!contato || !contato.numero) {
